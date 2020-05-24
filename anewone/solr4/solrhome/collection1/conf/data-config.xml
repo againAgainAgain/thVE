@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataConfig>
+    <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/film?useUnicode=true&amp; characterEncoding=UTF-8&amp; useSSL=false" user="root" password="123456" />
+    <document>
+            <entity name="film" query="SELECT id,fname,score,src,href,comment,c_src FROM filminfo,film_comment WHERE filminfo.fid=film_comment.fid">
+                <field column="id" name="id"/> 
+                <field column="fname" name="fname"/> 
+                <field column="score" name="score"/> 
+                <field column="src" name="src"/> 
+                <field column="href" name="href"/> 
+                <field column="comment" name="comment"/> 
+				<field column="c_src" name="c_src"/> 
+           </entity> 
+    </document>
+</dataConfig>

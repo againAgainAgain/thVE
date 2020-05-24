@@ -47,13 +47,14 @@ public class VeDaoImpl implements VeDao {
 //			solrQuery.addSort("book_price", ORDER.asc);
 //		}
 
-		
+		solrQuery.setQuery("*:*");
 		//关键词：指定一个搜索field
-		solrQuery.set("df","film_keyword");
+		//solrQuery.set("df","comment");
 		//指定返回哪些内容
-		solrQuery.set("fl", "id,film_name,film_score");
+		//solrQuery.set("fl", "id,fname,score,src,href,comment,c_src");
+		solrQuery.set("fl", "id,fname");
 		
-		//执行查询
+//		//执行查询
 		final QueryResponse response = httpSolrClient.query(solrQuery);
 		//文档结果集
 		SolrDocumentList docs = response.getResults();
@@ -69,10 +70,13 @@ public class VeDaoImpl implements VeDao {
 		for (SolrDocument doc : docs) {
 			FilmModel filmModel = new FilmModel();
 
-			filmModel.setFid((String) doc.get("id"));
-			filmModel.setName((String)doc.get("film_name"));
-			filmModel.setScore((Float) doc.get("film_score"));
-			filmModel.setKeyword((String) doc.get("film_keyword"));
+			filmModel.setId((String) doc.get("id"));
+			filmModel.setFname((String)doc.get("fname"));
+			filmModel.setScore((Float) doc.get("score"));
+			filmModel.setComment((String) doc.get("comment"));
+			filmModel.setSrc((String)doc.get("src"));
+			filmModel.setHref((String)doc.get("href"));
+			filmModel.setC_src((String)doc.get("c_src"));
 			//Map<String, List<String>> map = highlighting.get((String) doc.get("id"));
 			//List<String> list = map.get("film_name");
 
@@ -80,8 +84,8 @@ public class VeDaoImpl implements VeDao {
 			filmModels.add(filmModel);
 			System.out.println("第"+i+"个");
 			System.out.println((String) doc.get("id"));
-			System.out.println((String) doc.get("film_name"));
-			System.out.println((String) doc.get("film_score"));
+			System.out.println((String) doc.get("fname"));
+			System.out.println((String) doc.get("score"));
 		}
 		return filmModels;
 	}

@@ -3,23 +3,30 @@ package com.li.pojo;
 public class FilmModel {
 
 	//电影编号
-	private String fid;
+	private String id;
 	//电影名
-	private String name;
-	//导演
-	private String director;
-	//主演
-	private String actors;
+	private String fname;
 	//评分
 	private float score;
+	//图片链接
+	private String src;
+	//链接
+	private String href;
 	//评论
 	private String comment;
-	private String keyword;
-	public String getKeyword() {
-		return keyword;
+	//评论链接
+	private String c_src;
+	public String getId() {
+		return id;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
 	}
 	public float getScore() {
 		return score;
@@ -27,44 +34,31 @@ public class FilmModel {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	private String comment2;
-	
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String getHref() {
+		return href;
+	}
+	public void setHref(String href) {
+		this.href = href;
+	}
 	public String getComment() {
 		return comment;
 	}
-	public void setComment(String comments) {
-		this.comment = comments;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
-	public String getComment2() {
-		return comment2;
+	public String getC_src() {
+		return c_src;
 	}
-	public void setComment2(String comments) {
-		this.comment2 = comments;
+	public void setC_src(String c_src) {
+		this.c_src = c_src;
 	}
-	public String getFid() {
-		return fid;
-	}
-	public void setFid(String fid) {
-		this.fid = fid;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDirector() {
-		return director;
-	}
-	public void setDirector(String director) {
-		this.director = director;
-	}
-	public String getActors() {
-		return actors;
-	}
-	public void setActors(String actors) {
-		this.actors = actors;
-	}
+	
 	
 	//source->Generate Getters and Setters
 	
