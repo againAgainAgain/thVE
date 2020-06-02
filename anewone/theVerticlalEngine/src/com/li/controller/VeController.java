@@ -1,6 +1,7 @@
 package com.li.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +19,25 @@ public class VeController {
 	
 	//自动匹配参数
 	@RequestMapping("search.action")
-	public String search(String keyword,Model model)throws Exception{
-		System.out.println("keyword"+keyword);
-		List<FilmModel> filmModels = veService.selectFilmModelListByQuery(keyword);
+	public String search(String keyword,String score,String sort_fname,String page,Model model)throws Exception{
+		System.out.println("keyword+score+sort_fname+page"+keyword+score+sort_fname+page);
+		Map result=veService.selectFilmModelListByQuery(keyword,score,sort_fname,page);
+		List<FilmModel> filmModels = (List<FilmModel>)result.get("filmModels");
+		long count=(long)result.get("count");
 		model.addAttribute("filmModels", filmModels);
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("score", score);
+		model.addAttribute("sort_fname", sort_fname);
+		model.addAttribute("page", page);
+		model.addAttribute("count", count);
+		System.out.println("count"+count);	//由于已经返回回来的是具体页的10条了，所以count=10
+		long num=count/10+1;	
+		System.out.println("num"+num);
+		model.addAttribute("num",num);
         return "film_list";
     }
+	@RequestMapping("login.action")
+	public String login(String name,String password)throws Exception{
+		return "index";
+	}
 }

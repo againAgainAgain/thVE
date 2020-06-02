@@ -30,4 +30,7 @@
     	<constructor-arg value="http://localhost:8080/solr/collection1"/>
     </bean>
     
+    <!-- 配置MySQL -->
+    
+    
 </beans>

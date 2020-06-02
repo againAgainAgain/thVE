@@ -9,39 +9,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="utf-8" http-equiv="charset">
 <meta name="referrer" content="no-referrer">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resource'/>/base.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resource'/>/plist20131112.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resource'/>/list-page-20141009.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/resource'/>/pop_compare.css" media="all">
-<link rel="shortcut icon" type="image/ico"
-	href="http://list.jd.com/favicon.ico">
-<script type="text/javascript"
-	src="<c:url value='/resource'/>/jquery-1.2.6.pack.js"></script>
-<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
-.en-markup-crop-options {
-    top: 18px !important;
-    left: 50% !important;
-    margin-left: -100px !important;
-    width: 200px !important;
-    border: 2px rgba(255,255,255,.38) solid !important;
-    border-radius: 4px !important;
-}
+<title>基于电影影评的垂直搜索引擎</title>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-.en-markup-crop-options div div:first-of-type {
-    margin-left: 0px !important;
-}
-
-</style>
 <script type="text/javascript">
 
 	function query() {
 		//执行关键词查询时清空过滤条件
-		//document.getElementById("catalog_name").value="";
-		//document.getElementById("price").value="";
+		document.getElementById("sort_fname").value="";
+		document.getElementById("score").value="";
+		document.getElementById("page").value="";
 		//执行查询
 		queryList();
 	}
@@ -51,50 +30,98 @@
 		document.getElementById("actionForm").submit();
 	}
 	function filter(key, value) {
-		document.getElementById(key).value=value;
+		document.getElementById(key).value=value;//注意这里是<form>里的<input type="hidden" name="score" id="score" value="${score }"/> 
 		//执行查询
 		queryList();
 	}
+	function sort(){
+		document.getElementById("name_sort").class="active";
+		var temp=document.getElementById("sort_fname").value;
+		if(temp=="1")
+			temp="0";
+		else temp="1";
+		document.getElementById("sort_fname").value=temp;
+		queryList();
+	}
+	//function page(value){
+		
+	//}
 </script>
 </head>
 <body>
-	<div>
-		<form id="actionForm" action="search.action" method="POST">
-    		<input type="text" name = "keyword" value="${keyword} ">
-    		<input type="button" value="搜索" class="button" onclick="query()">
-		</form>
-	</div>
+	<div class="container">
+		<header class="blog-header py-3">
+			<div class="row flex-nowrap justify-content-between align-items-center">
+          		<div class="col-4 d-flex justify-content-end align-items-center" style="text-align:right">      
+            		<a class="btn btn-sm btn-outline-secondary" href="login.html">Sign up</a>
+          		</div>
+          	<div class="col-8">
+				<form class="bs-example bs-example-form" role="form" id="actionForm" action="search.action" method="POST">
+    				<div class="row">
+    					<div class="col-lg-10">
+                  			<div class="input-group">
+                    			<input type="text" class="form-control" name = "keyword" value="${keyword}">
+                    			<span class="input-group-btn">
+                      				<button class="btn btn-default" type="button" onclick="query()">Go!</button>
+                    			</span>
+                  			</div><!-- /input-group -->
+                		</div><!-- /.col-lg-6 -->
+    				</div>
+    				<input type="hidden" name="score" id="score" value="${score}"/>
+    				<input type="hidden" name="sort_fname" id="sort_fname" value="${sort_fname}"/>
+    				<input type="hidden" name="page" id="page" value="${page}"/> 
+				</form>
+			</div>
+		</div>
 	
-	<!--商品列表开始-->
+	<div style="height:100px;overflow:visible;">
+          <ul class="nav nav-tabs" >
+            <li id="name_sort"><a href="javascript:sort()">按名字排序</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                评分区间 <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="javascript:filter('score','9-9.5')">9-9.5</a></li>
+                <li><a href="javascript:filter('score','9.5-10')">9.5-10</a></li>
+                <li><a href="javascript:filter('score','0-9')">9分以下</a></li>
+              </ul>
+            </li>
+          </ul>
+          <span style="color:#CCC;font-size:10">共查询到  ${count} 条数据</span>
+        </div>
+	
+	
+	
+	</header>
+	<!--电影列表开始-->
 	<div id="plist" class="m plist-n7 plist-n8 prebuy">
-		<ul class="list-h">
-			<c:forEach var="item" items="${filmModels }">
-			<li id="${item.id }">
-				<div class="lh-wrap">
-					<div class="p-img">
-						<a target="_blank" href="#">
-							<img width="220" height="282" class="err-product" src="<c:url value='${item.src}'/>">
-						</a>
-					</div>
-					<div class="p-name">
-						电影名：<a target="_blank" href="<c:url value='${item.href}'/>">${item.fname }</a>
-					</div>
-					<div class="p-price">
-						<strong>评分<fmt:formatNumber value='${item.score}' maxFractionDigits="2"/></strong><span id="p1269191543"></span>
-					</div>
-					
-					<div class="p-price">
-						评论：<a target="_blank" href="<c:url value='${item.c_src}'/>">${item.comment }</a>
-					</div>
-					<br>
-					<br>
-				</div>
-			</li>
-			</c:forEach>
-		</ul>
-</div>
+		<ul class="list-h" style="list-style:none;margin-left:0;padding-left:0;">
+<c:forEach var="item" items="${filmModels }">
+  <li id="${item.id}">
+  <div class="media" style="margin-top:10px;">
+    <div class="media-left">
+      <img src="<c:url value='${item.src}'/>" class="media-object" style="width:60px">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">电影名：<a target="_blank" href="<c:url value='${item.href}'/>">${item.fname}</a></h4>
+      <strong>评分<fmt:formatNumber value='${item.score}' maxFractionDigits="2"/></strong><span id="p1269191543"></span>
+      <p>评论：<a target="_blank" href="<c:url value='${item.c_src}'/>">${item.comment}</a></p>
+    </div>
+  </div>
+  <hr>
+  </li>
+</c:forEach>
+</ul>
+	</div>
 <!--商品列表结束-->
-	
-
+	<div>
+		<!-- 分页实现 -->
+		共${num }页
+		<c:forEach var="x" begin="1" end="${num}" step="1">
+			<a href="javascript:filter('page','${x}')">第 ${x}页</a>
+		</c:forEach>
+	</div>
+	</div>
 </body>
 </html>
