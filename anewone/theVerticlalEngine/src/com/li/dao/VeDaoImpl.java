@@ -1,9 +1,15 @@
 package com.li.dao;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -14,6 +20,8 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import com.li.pojo.FilmModel;
@@ -138,12 +146,6 @@ public class VeDaoImpl implements VeDao {
 		result.put("filmModels", filmModels);
 		result.put("count", numFound);	//×ÜÌõÊý
 		return result;
-	}
-
-	
-	public String getNameBySQL(String name, String password) {
-		
-		return null;
 	}
 	
 	

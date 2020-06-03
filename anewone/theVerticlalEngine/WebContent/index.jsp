@@ -10,8 +10,11 @@
 	<title>基于电影影评的垂直搜索引擎</title>
 </head>
 <body>
-	<div class="login">
-		<a href="login.jsp">登陆</a>
+	<div class="login" style="float:right;border:0px;">
+		<form action="login_view.action" method="post">
+			<input type="submit" value="登陆" style="background-color:white;color:#808080"/>
+		</form>
+		<!--<a href="/login_view">登陆</a>-->
 	</div>
 	<div class="name">
 		<p>基于电影影评的垂直搜索引擎</p>
@@ -23,6 +26,7 @@
 			
     		<input type="text" name = "keyword" placeholder="请输入..." style="width:85%">
     		<input type="submit" value="搜索" style="width:15%"> 
+    		<input type="hidden" value="登陆" name="uname">
 		</form>
 	</div>
 </body>

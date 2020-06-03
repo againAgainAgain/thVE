@@ -2,8 +2,17 @@ package com.li.pojo;
 
 public class UserModel {
 
+	private int uid;
 	private String uname;
 	private String upassword;
+	
+	
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	public String getUname() {
 		return uname;
 	}

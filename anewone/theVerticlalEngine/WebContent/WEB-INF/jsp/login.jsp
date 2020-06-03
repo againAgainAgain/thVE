@@ -8,24 +8,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="" media="all">
 	<title>基于电影影评的垂直搜索引擎</title>
-	
-	<script src="<c:url value='/resource'/>/jquery-3.3.1.min.js"></script>
-	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript">
-
-	function register() {
-		var p1=document.getElementById("upassword").value;
-		var p2=document.getElementById("upassword1").value;
-		if(p1==p2){
-			document.getElementById("registerForm").submit();
-			
-		}
-		else{
-			alert("2次密码输入不一致");
-			document.getElementById("upassword1").value="";
-		}
-	}
-	</script>
 
 <style>
 input[type=text], select,input[type=password] {
@@ -38,7 +20,7 @@ input[type=text], select,input[type=password] {
   box-sizing: border-box;
 }
 
-input[type=submit],button {
+input[type=submit] {
   width: 100%;
   background-color: #4CAF50;
   color: white;
@@ -49,7 +31,7 @@ input[type=submit],button {
   cursor: pointer;
 }
 
-input[type=submit],button:hover {
+input[type=submit]:hover {
   background-color: #45a049;
 }
 
@@ -59,23 +41,23 @@ div {
   padding: 20px;
 }
 </style>
+${message}
 </head>
 <body>
+	
 	<center>
-	<h3>注册</h3>
+	<h3>登陆</h3>
 	</center>
 <div style="width:30%;margin:0 auto;padding-top:40px;padding-bottom:40px;">
-  <form action="register.action" id="registerForm" method="post">
+  <form action="login.action" method="post">
     
     <input type="text" id="uname" name="uname" placeholder="用户名">
    
     <input type="password" id="upassword" name="upassword" placeholder="密码">
-    <input type="password" id="upassword1" name="upassword1" placeholder="再次输入密码">
   
-  	<button type="button" onclick="register()">注册</button>
-   <!-- 
-    <input type="submit" value="注册">
-	  --> 
+    <input type="submit" value="登陆">
+	<a href="register.jsp" style="float:right;text-decoration:none;padding-right:10px;">注册</a>
+	  
   </form>
 </div>
 	

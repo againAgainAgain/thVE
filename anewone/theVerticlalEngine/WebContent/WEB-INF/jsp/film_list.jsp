@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<!-- saved from url=(0047)http://list.jd.com/list.html?cat=1315,1343,1355 -->
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -52,8 +51,15 @@
 	<div class="container">
 		<header class="blog-header py-3">
 			<div class="row flex-nowrap justify-content-between align-items-center">
-          		<div class="col-4 d-flex justify-content-end align-items-center" style="text-align:right">      
-            		<a class="btn btn-sm btn-outline-secondary" href="login.html">Sign up</a>
+          		<div class="col-4 d-flex justify-content-end align-items-center" style="text-align:right;border:0px;"> 
+          			<!-- 如果没登陆，就是“登陆”,如果登陆了，就是用户名     
+            		<a class="btn btn-sm btn-outline-secondary" href="login.html">Sign up</a> 
+            		 <div class="login" style="float:right;border:0px;">--> 
+						<form action="login_view.action" method="post">
+							<input type="submit" value="${uname}" style="background-color:white;color:#808080"/>
+						</form>
+							<!--<a href="/login_view">登陆</a>  </div>-->
+					
           		</div>
           	<div class="col-8">
 				<form class="bs-example bs-example-form" role="form" id="actionForm" action="search.action" method="POST">
