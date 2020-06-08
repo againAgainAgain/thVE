@@ -1,0 +1,42 @@
+.login{
+	height:20px;
+	text-align:right;
+	padding-right:20px;
+}
+a{
+	text-decoration:none;
+}
+.name{
+	height:140px;
+	text-align:center;
+	padding-top:80px;
+	font-size:30px;
+}
+input[type=text] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px,0px,0px,4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('https://static.runoob.com/images/mix/searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 10px 24px 12px 40px;
+  float:left;
+  border-right: none;
+}
+ input[type=submit]{
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    height:42px;
+}
+
+/* Add a background color on hover */
+input[type=submit]:hover {
+    background-color: #3e8e41;
+}
